@@ -12,3 +12,6 @@ form { display: flex; flex-direction: column; gap: 10px; max-width: 420px; }
 input, textarea { font: inherit; padding: 10px; border: 1px solid #E2DFD6; border-radius: 8px; }
 button { font: inherit; font-weight: 700; background: #2537B8; color: #fff; border: 0; border-radius: 8px; padding: 10px; cursor: pointer; }
 footer { background: #141B52; color: #fff; text-align: center; padding: 16px; }
+#faq details { background: #fff; border: 1px solid #E2DFD8; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; }
+#faq summary { cursor: pointer; font-weight: 700; }
+#faq p { margin: 8px 0 0; }
