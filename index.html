@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hopper · Atelier vélo</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <header>
+    <b>Hopper</b>
+    <nav><a href="#services">Services</a><a href="#horaires">Horaires</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <div class="hero">
+    <h1>Votre vélo réparé en 48 h</h1>
+    <p>Révision, crevaison, freins : on s'occupe de tout.</p>
+    <a href="#contact">Prendre rendez-vous</a>
+  </div>
+
+  <section id="services">
+    <h2>Nos services</h2>
+    <div class="cartes">
+      <div class="carte"><h3>Révision</h3><p>Réglages complets, freins et vitesses. 49 €</p></div>
+      <div class="carte"><h3>Crevaison</h3><p>Réparation en 30 minutes. 15 €</p></div>
+      <div class="carte"><h3>Location</h3><p>Vélos de ville à la journée. 20 €</p></div>
+    </div>
+  </section>
+
+  <section id="horaires">
+    <h2>Horaires</h2>
+    <p>Du mardi au samedi, de 9 h à 19 h. Fermé le dimanche et le lundi.</p>
+    <p>12 rue des Rayons, 75011 Paris</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form id="contact-form">
+      <input name="nom" placeholder="Votre nom" required>
+      <input name="email" type="email" placeholder="Votre email" required>
+      <textarea name="message" rows="4" placeholder="Votre message" required></textarea>
+      <button>Envoyer</button>
+    </form>
+  </section>
+
+  <footer>Hopper · Atelier vélo · site de démonstration</footer>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
