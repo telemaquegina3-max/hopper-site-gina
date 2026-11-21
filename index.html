@@ -36,10 +36,11 @@
   <section id="contact">
     <h2>Contact</h2>
     <form id="contact-form">
-      <input name="nom" placeholder="Votre nom" required>
-      <input name="email" type="email" placeholder="Votre email" required>
-      <textarea name="message" rows="4" placeholder="Votre message" required></textarea>
-      <button>Envoyer</button>
+      <input aria-label="Votre nom" maxlength="120" name="nom" placeholder="Votre nom" required>
+      <input aria-label="Votre email" maxlength="254" name="email" type="email" placeholder="Votre email" required>
+      <textarea aria-label="Votre message" maxlength="2000" name="message" rows="4" placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer</button>
+      <div id="contact-status" role="status"></div>
     </form>
   </section>
 

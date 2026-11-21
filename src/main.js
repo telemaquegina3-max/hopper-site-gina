@@ -1,11 +1,3 @@
-
-// Formulaire de contact : pour l'instant, il n'enregistre rien.
-// (Lundi, on le reliera à une base de données Supabase.)
-document.getElementById('contact-form').addEventListener('submit', (e) => {
-  e.preventDefault()
-  alert("Ce formulaire n'enregistre rien pour l'instant.")
-})
-
 const toggle = document.querySelector('#chat-toggle')
 const panel = document.querySelector('#chat-panel')
 const chatForm = document.querySelector('#chat-form')
@@ -27,11 +19,51 @@ function addMessage(author, message) {
   history.scrollTop = history.scrollHeight
 }
 
-chatForm.addEventListener('submit', event => {
+async function send(path, data) {
+  const response = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  const result = await response.json()
+  if (!response.ok) throw new Error(result.error || 'Le service est momentanément indisponible.')
+  return result
+}
+
+chatForm.addEventListener('submit', async event => {
   event.preventDefault()
   const question = questionInput.value.trim()
-  if (!question) return
+  const button = chatForm.querySelector('button')
+  if (!question || button.disabled) return
+  button.disabled = true
   addMessage('Vous', question)
-  chatForm.reset()
-  addMessage('Hopper', 'Merci, on vous répond bientôt !')
+  try {
+    const result = await send('/api/chat', { question })
+    addMessage(result.demo ? 'Hopper (démo)' : 'Hopper', result.answer)
+    chatForm.reset()
+  } catch (error) {
+    addMessage('Hopper', error instanceof SyntaxError ? 'La connexion au chatbot est indisponible.' : error.message)
+  } finally {
+    button.disabled = false
+  }
+})
+
+const contactForm = document.querySelector('#contact-form')
+const status = document.querySelector('#contact-status')
+contactForm.addEventListener('submit', async event => {
+  event.preventDefault()
+  const button = contactForm.querySelector('button')
+  if (button.disabled) return
+  button.disabled = true
+  status.textContent = 'Envoi en cours…'
+  try {
+    const result = await send('/api/contact', Object.fromEntries(new FormData(contactForm)))
+    if (!result.sent) throw new Error('Le message n’a pas été enregistré.')
+    status.textContent = 'Votre message a bien été envoyé.'
+    contactForm.reset()
+  } catch (error) {
+    status.textContent = error instanceof SyntaxError ? 'La connexion au formulaire est indisponible.' : error.message
+  } finally {
+    button.disabled = false
+  }
 })
