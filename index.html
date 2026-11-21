@@ -52,6 +52,18 @@
 
   <footer>Hopper · Atelier vélo · site de démonstration</footer>
 
+  <aside class="chat" aria-label="Assistant Hopper">
+    <button id="chat-toggle" type="button" aria-controls="chat-panel" aria-expanded="false">Assistant Hopper</button>
+    <div id="chat-panel" hidden>
+      <div id="chat-history" role="log" aria-label="Conversation"><p><strong>Hopper</strong> Bonjour ! Comment puis-je vous aider ?</p></div>
+      <form id="chat-form">
+        <label for="chat-question">Votre question</label>
+        <input id="chat-question" name="question" maxlength="500" required>
+        <button type="submit">Envoyer la question</button>
+      </form>
+    </div>
+  </aside>
+
   <script type="module" src="src/main.js"></script>
 </body>
 </html>
